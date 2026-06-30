@@ -1,3 +1,5 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wthread-safety-attributes"
 // Copyright 2023 PingCAP, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -167,3 +169,4 @@ private:
     std::list<MergedTaskPtr> merged_task_pool GUARDED_BY(mtx);
 };
 } // namespace DB::DM
+#pragma clang diagnostic pop

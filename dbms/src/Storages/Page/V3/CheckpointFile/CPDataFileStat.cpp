@@ -116,6 +116,41 @@ struct RemoteFilesInfo
     Stats summary_stats;
 };
 
+} // namespace DB::PS::V3
+
+template <>
+struct fmt::formatter<DB::PS::V3::FileInfo>
+{
+    static constexpr auto parse(format_parse_context & ctx) { return ctx.begin(); }
+
+    template <typename FormatContext>
+    auto format(const DB::PS::V3::FileInfo & value, FormatContext & ctx) const -> decltype(ctx.out())
+    {
+        return fmt::format_to(
+            ctx.out(),
+            "{{key={} age={:.3f} size={} rate={:2.2f}%}}",
+            value.file_id,
+            value.age_seconds,
+            value.total_size,
+            value.valid_rate * 100);
+    }
+};
+
+template <>
+struct fmt::formatter<DB::PS::V3::RemoteFilesInfo>
+{
+    static constexpr auto parse(format_parse_context & ctx) { return ctx.begin(); }
+
+    template <typename FormatContext>
+    auto format(const DB::PS::V3::RemoteFilesInfo & v, FormatContext & ctx) const -> decltype(ctx.out())
+    {
+        return fmt::format_to(ctx.out(), "{{compaction={} unchanged={}}}", v.to_compact, v.unchanged);
+    }
+};
+
+namespace DB::PS::V3
+{
+
 std::unordered_set<String> getRemoteFileIdsNeedCompact(
     PS::V3::CPDataFilesStatCache::CacheMap & stats, // will be updated
     const DM::Remote::RemoteGCThreshold & gc_threshold,
@@ -193,33 +228,3 @@ std::unordered_set<String> getRemoteFileIdsNeedCompact(
 }
 
 } // namespace DB::PS::V3
-
-template <>
-struct fmt::formatter<DB::PS::V3::FileInfo>
-{
-    static constexpr auto parse(format_parse_context & ctx) { return ctx.begin(); }
-
-    template <typename FormatContext>
-    auto format(const DB::PS::V3::FileInfo & value, FormatContext & ctx) const -> decltype(ctx.out())
-    {
-        return fmt::format_to(
-            ctx.out(),
-            "{{key={} age={:.3f} size={} rate={:2.2f}%}}",
-            value.file_id,
-            value.age_seconds,
-            value.total_size,
-            value.valid_rate * 100);
-    }
-};
-
-template <>
-struct fmt::formatter<DB::PS::V3::RemoteFilesInfo>
-{
-    static constexpr auto parse(format_parse_context & ctx) { return ctx.begin(); }
-
-    template <typename FormatContext>
-    auto format(const DB::PS::V3::RemoteFilesInfo & v, FormatContext & ctx) const -> decltype(ctx.out())
-    {
-        return fmt::format_to(ctx.out(), "{{compaction={} unchanged={}}}", v.to_compact, v.unchanged);
-    }
-};

@@ -1,3 +1,4 @@
+#include <tuple>
 // Modified from: https://github.com/ClickHouse/ClickHouse/blob/30fcaeb2a3fff1bf894aae9c776bed7fd83f783f/dbms/src/Common/StringUtils/StringUtils.h
 //
 // Copyright 2023 PingCAP, Inc.

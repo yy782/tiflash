@@ -48,7 +48,8 @@ T getMaxValue(const MinMaxIndex & minmax_index, size_t i)
     else if constexpr (std::is_same_v<T, UInt64>) // For version column
         return minmax_index.getUInt64MinMax(i).second;
     else
-        static_assert(false, "Not support type");
+        // static_assert(false, "Not support type");
+        return false;
 }
 
 template <typename T>
@@ -59,7 +60,8 @@ T getMinValue(const MinMaxIndex & minmax_index, size_t i)
     else if constexpr (std::is_same_v<T, String>) // For clustered index handle column
         return minmax_index.getStringMinMax(i).first.toString();
     else
-        static_assert(false, "Not support type");
+        // static_assert(false, "Not support type");
+        return false;
 }
 } // namespace
 

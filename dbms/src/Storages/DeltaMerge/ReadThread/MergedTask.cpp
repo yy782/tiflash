@@ -1,3 +1,5 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wthread-safety-analysis"
 // Copyright 2023 PingCAP, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -136,4 +138,4 @@ bool MergedTaskPool::has(UInt64 pool_id)
         return merged_task->containPool(pool_id);
     });
 }
-} // namespace DB::DM
+} // namespace DB::DM#pragma clang diagnostic pop

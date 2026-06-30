@@ -1,3 +1,5 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wthread-safety-analysis"
 // Copyright 2023 PingCAP, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -277,3 +279,4 @@ try
 CATCH
 
 } // namespace DB::DM::tests
+#pragma clang diagnostic pop

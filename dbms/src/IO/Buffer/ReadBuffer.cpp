@@ -1,3 +1,4 @@
+#include <cstddef>
 // Modified from: https://github.com/ClickHouse/ClickHouse/blob/30fcaeb2a3fff1bf894aae9c776bed7fd83f783f/dbms/src/IO/ReadBuffer.h
 //
 // Copyright 2023 PingCAP, Inc.
@@ -53,7 +54,7 @@ private:
 
 std::unique_ptr<ReadBuffer> wrapReadBufferReference(ReadBuffer & ref)
 {
-    return std::make_unique<ReadBufferWrapper<nullptr_t>>(ref, nullptr);
+    return std::make_unique<ReadBufferWrapper<std::nullptr_t>>(ref, nullptr);
 }
 
 std::unique_ptr<ReadBuffer> wrapReadBufferPointer(ReadBufferPtr ptr)

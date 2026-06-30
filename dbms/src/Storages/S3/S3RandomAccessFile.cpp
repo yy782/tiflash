@@ -35,6 +35,19 @@
 #include <random>
 #include <string_view>
 
+#include <fmt/format.h>
+
+// 为 std::_Ios_Iostate 特化 fmt::formatter，让它以 int 类型进行格式化
+template <>
+struct fmt::formatter<std::_Ios_Iostate> : fmt::formatter<int> {
+    // 继承父类的 parse 方法
+
+    // 实现 format 方法，将值转换为 int
+    auto format(std::_Ios_Iostate state, format_context& ctx) const {
+        return formatter<int>::format(static_cast<int>(state), ctx);
+    }
+};
+
 namespace CurrentMetrics
 {
 extern const Metric S3RandomAccessFile;

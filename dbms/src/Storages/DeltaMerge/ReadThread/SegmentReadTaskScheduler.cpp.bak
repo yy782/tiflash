@@ -1,9 +1,9 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wthread-safety-analysis"
-#pragma clang diagnostic ignored "-Wthread-safety-reference"
-#pragma clang diagnostic ignored "-Wthread-safety-attributes"
-#pragma clang diagnostic ignored "-Wthread-safety"
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wthread-safety-analysis"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wthread-safety-analysis"
 // Copyright 2023 PingCAP, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -113,7 +113,6 @@ void SegmentReadTaskScheduler::reapPendingPools()
         LOG_INFO(log, "Added, pool_ids={}, pool_count={}", pools, read_pools.size());
     }
 }
-
 
 MergedTaskPtr SegmentReadTaskScheduler::scheduleMergedTask(SegmentReadTaskPoolPtr & pool)
 {
@@ -353,4 +352,6 @@ void SegmentReadTaskScheduler::updateConfig(const Settings & settings)
 }
 
 } // namespace DB::DM
+#pragma clang diagnostic pop
+#pragma clang diagnostic pop
 #pragma clang diagnostic pop

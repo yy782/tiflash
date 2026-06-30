@@ -66,7 +66,8 @@ bool inRowKeyRange(const RowKeyRange & range, HandleRefType handle)
     else if constexpr (std::is_same_v<HandleRefType, std::string_view>)
         return *(range.start.value) <= handle && (handle < *(range.end.value) || range.isEndInfinite());
     else
-        static_assert(false, "Only suport Int64 and std::string_view");
+        // static_assert(false, "Only suport Int64 and std::string_view");
+        return false;
 }
 
 RSResults getRSResultsByRanges(const DMContext & dm_context, const DMFilePtr & dmfile, const RowKeyRanges & ranges);

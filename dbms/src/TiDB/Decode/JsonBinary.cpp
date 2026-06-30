@@ -1,3 +1,4 @@
+#include <cmath>
 // Copyright 2023 PingCAP, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -529,7 +530,7 @@ void JsonBinary::marshalArrayTo(JsonBinaryWriteBuffer & write_buffer) const
 
 void JsonBinary::marshalFloat64To(JsonBinaryWriteBuffer & write_buffer, double f)
 {
-    RUNTIME_CHECK(!isinf(f) && !isnan(f));
+    RUNTIME_CHECK(!std::isinf(f) && !std::isnan(f));
     /// Comments from TiDB:
     /// Convert as if by ES6 number to string conversion.
     /// This matches most other JSON generators.

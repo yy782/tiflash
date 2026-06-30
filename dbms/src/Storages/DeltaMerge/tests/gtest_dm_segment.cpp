@@ -1204,7 +1204,8 @@ try
             DEFAULT_BLOCK_SIZE);
         // Only the rows in [30, 50) and [80, 90) valid
         auto vec = createNumbers<Int64>(30, 50);
-        vec.append_range(createNumbers<Int64>(80, 90));
+        auto numbers = createNumbers<Int64>(80, 90);
+        vec.insert(vec.end(), numbers.begin(), numbers.end());
         ASSERT_INPUTSTREAM_BLOCK_UR(in, Block({createColumn<Int64>(vec)}));
     }
 }

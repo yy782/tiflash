@@ -24,7 +24,7 @@ namespace DB::DM
 template <typename T>
 class ColumnView
 {
-    // static_assert(false, "Only support integer and string");
+    static_assert(false, "Only support integer and string");
 };
 
 template <std::integral T>

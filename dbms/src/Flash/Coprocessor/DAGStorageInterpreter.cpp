@@ -1511,9 +1511,7 @@ std::unordered_map<TableID, DAGStorageInterpreter::StorageWithStructureLock> DAG
         {
             // Since we can not know which table's schema is newer, we need to sync all tables' schema.
             need_sync_table_ids.clear();
-            const auto & ids = table_scan.getPhysicalTableIDs();
-            need_sync_table_ids.insert(need_sync_table_ids.end(), ids.begin(), ids.end());
-            need_sync_table_ids.push_back(logical_table_id);
+            need_sync_table_ids.append_range(table_scan.getPhysicalTableIDs());
             table_storages.clear();
             table_locks.clear();
         }

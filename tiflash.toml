@@ -1,0 +1,4 @@
+tcp_port = 9000
+capacity = 1000000000
+[logger]
+level = "debug"

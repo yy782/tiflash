@@ -85,7 +85,7 @@ inline constexpr size_t getFileNameOffset(T (& /*str*/)[1])
     {                                                                                       \
         if ((logger)->is(PRIORITY))                                                         \
         {                                                                                   \
-            LOG_INTERNAL(logger, PRIORITY, fmt::format( (fmt_str), __VA_ARGS__)); \
+            LOG_INTERNAL(logger, PRIORITY, fmt::format(FMT_COMPILE(fmt_str), __VA_ARGS__)); \
         }                                                                                   \
     } while (false)
 

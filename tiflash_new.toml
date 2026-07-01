@@ -1,0 +1,13 @@
+# TCP 服务端口（建议在生产环境中注释掉，有安全风险）
+tcp_port = 9000
+
+[storage]
+# 有效值为 1 或 2
+format_version = 2
+
+[storage.main]
+dir = ["/tmp/tiflash_data"]
+capacity = [1000000000]
+
+[logger]
+level = "debug"
